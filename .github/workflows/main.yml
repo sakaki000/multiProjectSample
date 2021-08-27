@@ -25,11 +25,25 @@ jobs:
         run: chmod +x gradlew
 
       # Javadoc生成
-      #- name: Build javadoc
-      #  run: |
-      #    echo `! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?`
-      #    ! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?
-      #    echo `ls build/docs/javadoc/`
+      - name: Build javadoc
+        run: |
+          ! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?
           
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # docsフォルダの内容入れ替え
+      - name: Update javadoc
+        run: |
+          # docsフォルダ作成
+          mkdir -p ./docs
+          COUNT=$(diff -r -q  build/docs/javadoc/ ./docs/ | wc -l)
+          # 変更が1件以上あればdocsフォルダの中身を入れ替える
+          if [ $COUNT -gt 0 ]; then
+            rm -rf ./docs/*
+            cp -r build/docs/javadoc/* ./docs/
+            git add ./docs/*
+            git commit -m "update javadoc"
+          fi
+          git add .
+          git push origin ${{env.BRANCH_JAVADOC}}
+          
+      #- name: Setup tmate session
+      #  uses: mxschmitt/action-tmate@v3
