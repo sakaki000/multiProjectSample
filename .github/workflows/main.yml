@@ -29,3 +29,4 @@ jobs:
         run: |
           echo `! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?`
           ! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?
+          echo `ls build/docs/javadoc/`
