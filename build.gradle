@@ -26,14 +26,16 @@ subprojects {
     }
 }
 
-def exportedProjects = [
-        ":calculator-shared",
-        ":calculator-cli"
-]
-
-tasks.withType(Javadoc) {
-      description = 'Generates a global javadoc from all the modules'
-      source exportedProjects.collect { project(it).sourceSets.main.allJava }    											  
-      classpath = files(exportedProjects.collect { project(it).sourceSets.main.compileClasspath })
-      destinationDir = file("build/docs/javadoc")
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.13'
 }
+
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
+    }
+}
+
+apply plugin: 'nebula-aggregate-javadocs'
