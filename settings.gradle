@@ -1,0 +1,5 @@
+rootProject.name = 'commandline-calculator'
+
+println 'This is executed during the initialization phase.'
+
+includeFlat 'calculator-shared', 'calculator-cli', 'calculator-cli-without-spring'
