@@ -20,6 +20,9 @@ jobs:
         with:
           java-version: 1.8
 
+      # git configの設定
+      - uses: fregante/setup-git-user@v1
+      
       # Gradleへの権限付与
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
