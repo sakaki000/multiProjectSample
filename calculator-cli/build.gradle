@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+}
+
+apply plugin: "org.springframework.boot"
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation "org.springframework.boot:spring-boot-starter-web"
+
+    implementation group: 'org.jline', name: 'jline', version: '3.13.2'
+    implementation group: 'org.jline', name: 'jline-terminal-jna', version: '3.13.2'
+    implementation group: 'net.java.dev.jna', name: 'jna', version: '5.5.0'
+
+    implementation project(":calculator-shared")
+    implementation (project(":calculator-cli-without-spring")) {
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+    }
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
