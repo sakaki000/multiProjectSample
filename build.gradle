@@ -1,10 +1,17 @@
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
+    }
+}
+
 plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
     id "io.freefair.lombok" version "4.1.6"
 }
-
 apply plugin: 'nebula-aggregate-javadocs'
 
 subprojects {
@@ -25,13 +32,5 @@ subprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
-    }
-}
-
-buildscript {
-    repositories { jcenter() }
-
-    dependencies {
-        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
     }
 }
