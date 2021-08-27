@@ -25,11 +25,11 @@ jobs:
         run: chmod +x gradlew
 
       # Javadoc生成
-      - name: Build javadoc
-        run: |
-          echo `! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?`
-          ! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?
-          echo `ls build/docs/javadoc/`
+      #- name: Build javadoc
+      #  run: |
+      #    echo `! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?`
+      #    ! ./gradlew javadoc 2>&1 | grep -v 'warning: \\[deprecation\\]' | grep -A 2 -e warning: -e error: ; exit $?
+      #    echo `ls build/docs/javadoc/`
           
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
