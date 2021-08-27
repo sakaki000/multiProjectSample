@@ -1,4 +1,4 @@
-rootProject.name = 'commandline-calculator'
+rootProject.name = 'multiProjectSample'
 
 println 'This is executed during the initialization phase.'
 
