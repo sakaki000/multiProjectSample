@@ -27,7 +27,8 @@ subprojects {
 }
 
 def exportedProjects = [
-        ":calculator-shared"
+        ":calculator-shared",
+        ":calculator-cli"
 ]
 
 tasks.withType(Javadoc) {
