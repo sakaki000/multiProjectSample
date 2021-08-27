@@ -1,5 +1,5 @@
 rootProject.name = 'multiProjectSample'
 
-println 'This is executed during the initialization phase.'
-
-includeFlat 'calculator-shared', 'calculator-cli', 'calculator-cli-without-spring'
+include 'calculator-shared'
+include 'calculator-cli'
+include 'calculator-cli-without-spring'
