@@ -5,6 +5,29 @@ plugins {
     id "io.freefair.lombok" version "4.1.6"
 }
 
+apply plugin: 'nebula-aggregate-javadocs'
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'io.freefair.lombok'
+
+    group = 'com.hrkt'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '1.8'
+
+    dependencies {
+        testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
 buildscript {
     repositories { jcenter() }
 
@@ -12,5 +35,3 @@ buildscript {
         classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
     }
 }
-
-apply plugin: 'nebula-aggregate-javadocs'
